@@ -10,6 +10,10 @@ class Set1Tests < MiniTest::Test
     assert_equal hex_to_base64(@input), "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t"
   end
 
+  def test_challenge_2_simple
+    assert_equal fixed_xor("1c", "68"), "74"
+  end
+
   def test_challenge_2
     assert_equal fixed_xor("1c0111001f010100061a024b53535009181c", "686974207468652062756c6c277320657965"), "746865206b696420646f6e277420706c6179"
   end
