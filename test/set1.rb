@@ -32,13 +32,14 @@ class Set1Tests < MiniTest::Test
   end
 
   def test_calculate_frequency_score
-    frequency_hash = calculate_letter_frequencies("etaoin etaoin vkjxqz")
-    assert_equal 12, calculate_english_frequency_score(frequency_hash)
+    frequency_hash1 = calculate_letter_frequencies("This is a fairly normal, but somewhat short english sentence.")
+    frequency_hash2 = calculate_letter_frequencies("yyasinxazz jj queekd qqz")
+    assert calculate_english_frequency_score(frequency_hash1) < calculate_english_frequency_score(frequency_hash2)
   end
 
   def test_single_byte_xor_cypher
-    decoded_text, key = single_byte_xor_cypher("f29bdad69be8cbdac9cfdad8cec8")
+    decoded_text, key = single_byte_xor_cypher("523b7a763b486b7a696f7a786e68")
     assert_equal "I am Spartacus", decoded_text
-    assert_equal 'b', key
+    assert_equal '1b', key
   end
 end
