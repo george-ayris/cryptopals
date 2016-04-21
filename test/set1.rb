@@ -23,13 +23,19 @@ class Set1Tests < MiniTest::Test
 
   def test_fixed_xor_oo
     b = Bytes.new("1c")
-    after_xor = b.xor_with("68")
+    after_xor = b.xor_with_byte("68")
     assert_equal "74", after_xor.hex_representation()
   end
 
   def test_challenge_2
     assert_equal "746865206b696420646f6e277420706c6179",
                  fixed_xor("1c0111001f010100061a024b53535009181c", "686974207468652062756c6c277320657965")
+  end
+
+  def test_challenge_2_oo
+    b = Bytes.new("1c0111001f010100061a024b53535009181c")
+    after_xor = b.xor_with_string("686974207468652062756c6c277320657965")
+    assert_equal "746865206b696420646f6e277420706c6179", after_xor.hex_representation()
   end
 
   def test_letter_frequencies
