@@ -1,5 +1,6 @@
 require "minitest/autorun"
 require_relative "../src/set1.rb"
+require_relative "../src/bytes.rb"
 
 class Set1Tests < MiniTest::Test
   def setup
@@ -11,8 +12,19 @@ class Set1Tests < MiniTest::Test
                  hex_to_base64(@input)
   end
 
+  def test_challenge_1_oo
+    b = Bytes.new(@input)
+    assert_equal "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t", b.base64_representation()
+  end
+
   def test_fixed_xor
     assert_equal "74", fixed_xor("1c", "68")
+  end
+
+  def test_fixed_xor_oo
+    b = Bytes.new("1c")
+    after_xor = b.xor_with("68")
+    assert_equal "74", after_xor.hex_representation()
   end
 
   def test_challenge_2
