@@ -14,9 +14,17 @@ class Bytes
     Base64.strict_encode64(@byte_array.map { |x| x.chr }.join)
   end
 
-  def xor_with_byte(hex_byte)
-    raise ArgumentError, "Must be a 2 character hex string" unless hex_byte.is_a? String and hex_byte.length == 2
-    xor = @byte_array.map { |x| x^(hex_byte.hex) }
+  def character_representation()
+    @byte_array.map { |x| x.chr }.join
+  end
+
+  def xor_with_byte(byte)
+    if byte.is_a? String
+      raise ArgumentError, "Must be a 2 character hex string" unless byte.length == 2
+      byte = byte.hex
+    end
+
+    xor = @byte_array.map { |x| x^byte }
     self.class.new(byte_array_to_hex(xor))
   end
 
@@ -27,7 +35,6 @@ class Bytes
 
     as_bytes = hex_to_byte_array(hex_string)
     xor = as_bytes.zip(@byte_array).map { |x,y| x^y }
-    puts byte_array_to_hex(xor)
     self.class.new(byte_array_to_hex(xor))
   end
 
