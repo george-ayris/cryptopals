@@ -34,9 +34,22 @@ class EnglishScoreCalculator
     return 500 unless frequencies.a_to_z_entries?
 
     chi_squared = 0
+    english_letter_divisor = 1
     [*('a'..'z')].each do |x|
+      english_letter_divisor *= 2
       chi_squared += ((frequencies[x] - english_letter_frequencies[x])**2 / english_letter_frequencies[x])
     end
-    chi_squared
+
+    # Punish multiple spaces in a row
+    potential_english_string.scan(/  /).each { |x| english_letter_divisor/2 }
+
+    invalid_punctuation = ['#','\\','@','{','}','[',']','`','|','_','^','*']
+    potential_english_string.split('').each do |x|
+      if invalid_punctuation.include? x or !x.ascii_only?
+        english_letter_divisor = english_letter_divisor/2
+      end
+    end
+
+    chi_squared/english_letter_divisor
   end
 end
