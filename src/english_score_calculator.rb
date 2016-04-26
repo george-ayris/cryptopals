@@ -36,10 +36,11 @@ class EnglishScoreCalculator
     chi_squared = 0
     english_letter_divisor = 1
     [*('a'..'z')].each do |x|
-      english_letter_divisor *= 2
+      english_letter_divisor *= 2 unless frequencies[x] == 0
       chi_squared += ((frequencies[x] - english_letter_frequencies[x])**2 / english_letter_frequencies[x])
     end
 
+    # The following should be refactored to use the frequency hash
     # Punish multiple spaces in a row
     potential_english_string.scan(/  /).each { |x| english_letter_divisor/2 }
 
