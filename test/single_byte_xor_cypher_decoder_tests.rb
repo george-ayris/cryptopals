@@ -1,5 +1,4 @@
 require "minitest/autorun"
-require_relative "../src/bytes.rb"
 require_relative "../src/english_score_calculator.rb"
 require_relative "../src/single_byte_xor_cypher_decoder.rb"
 
@@ -17,13 +16,13 @@ class SingleByteXorCypherDecoderTests < MiniTest::Test
   end
 
   def test_single_byte_xor_cypher_decoder
-    decoder = SingleByteXorCypherDecoder.new(Bytes.new("523b7a763b486b7a696f7a786e68"))
+    decoder = SingleByteXorCypherDecoder.new("523b7a763b486b7a696f7a786e68")
     assert_equal "I am Spartacus", decoder.clear_text()
     assert_equal 27, decoder.key()
   end
 
   def test_prefer_strings_with_valid_punctuation
-    decoder = SingleByteXorCypherDecoder.new(Bytes.new("7b5a4215415d544115415d5015455447414c155c46155f4058455c5b523f"))
+    decoder = SingleByteXorCypherDecoder.new("7b5a4215415d544115415d5015455447414c155c46155f4058455c5b523f")
     assert_equal "Now that the party is jumping\n", decoder.clear_text()
   end
 end

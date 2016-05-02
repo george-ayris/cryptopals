@@ -1,5 +1,4 @@
 require_relative '../src/single_byte_xor_cypher_decoder.rb'
-require_relative '../src/bytes.rb'
 
 # CHallenges 1 and 2 are covered in bytes_tests.rb
 
@@ -12,7 +11,7 @@ puts "clear text: #{decoder.clear_text()}"
 clear_text = ""
 score = 0
 File.readlines(File.join(File.dirname(__FILE__), '../data/set1challenge4.txt')).each do |line|
-  decoder = SingleByteXorCypherDecoder.new(Bytes.new(line))
+  decoder = SingleByteXorCypherDecoder.new(line)
   if decoder.score() > score
     score = decoder.score()
     clear_text = decoder.clear_text()

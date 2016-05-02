@@ -1,6 +1,5 @@
 require 'minitest/autorun'
 require_relative '../src/repeating_key_xor_encoder.rb'
-require_relative '../src/bytes.rb'
 
 class RepeatingKeyXorEncoderTests < MiniTest::Test
   def test_encode_with_repeating_key

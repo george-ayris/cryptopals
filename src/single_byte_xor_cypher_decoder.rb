@@ -1,10 +1,10 @@
 require_relative 'english_score_calculator.rb'
-require_relative 'bytes.rb'
+require_relative 'byte_converter.rb'
+require_relative 'xor.rb'
 
 class SingleByteXorCypherDecoder
-  def initialize bytes
-    bytes = Bytes.new bytes if bytes.is_a? String
-    @key, @most_english_calculator = decode bytes
+  def initialize hex_cypher_text
+    @key, @most_english_calculator = decode ByteConverter.convert_to_bytes(hex_cypher_text)
   end
 
   attr_reader :key
@@ -21,8 +21,8 @@ class SingleByteXorCypherDecoder
   def decode bytes
     possible_keys = [*(0..255)]
     scoreCalculators = possible_keys.map do |key|
-      xorred_bytes = bytes.xor_with_byte key
-      [key, EnglishScoreCalculator.new(xorred_bytes.character_representation)]
+      xor = Xor.array_with_single_byte bytes, key
+      [key, EnglishScoreCalculator.new(xor.character_result)]
     end
 
     mostEnglish = scoreCalculators.reduce { |bestSoFar, current|
