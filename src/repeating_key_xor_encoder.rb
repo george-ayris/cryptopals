@@ -21,7 +21,8 @@ class RepeatingKeyXorEncoder
     (0..(number_of_bytes-1)).each do |i|
       key_byte = key.byte_n(i % key_length)
       plain_text_byte = plain_text.byte_n(i)
-      cypher_text = cypher_text.concat(plain_text_byte.xor_with_byte(key_byte))
+      encoded_byte = plain_text_byte.xor_with_byte(key_byte)
+      cypher_text = cypher_text.concat(encoded_byte)
     end
 
     cypher_text

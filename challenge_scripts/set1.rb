@@ -4,7 +4,7 @@ require_relative '../src/bytes.rb'
 # CHallenges 1 and 2 are covered in bytes_tests.rb
 
 # Challenge 3
-decoder = SingleByteXorCypherDecoder.new(Bytes.new("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"))
+decoder = SingleByteXorCypherDecoder.new("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736")
 puts "Challenge 3 results"
 puts "clear text: #{decoder.clear_text()}"
 

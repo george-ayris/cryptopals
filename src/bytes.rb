@@ -11,12 +11,10 @@ class Bytes
     end
   end
 
+  attr_reader :hex_representation
+
   def concat(bytes)
     self.class.new(@hex_representation + bytes.hex_representation)
-  end
-
-  def hex_representation
-    @hex_representation
   end
 
   def base64_representation

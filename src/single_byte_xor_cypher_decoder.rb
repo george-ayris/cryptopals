@@ -1,7 +1,9 @@
 require_relative 'english_score_calculator.rb'
+require_relative 'bytes.rb'
 
 class SingleByteXorCypherDecoder
   def initialize(bytes)
+    bytes = Bytes.new(bytes) if bytes.is_a? String
     @key, @most_english_calculator = decode(bytes)
   end
 

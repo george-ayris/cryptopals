@@ -3,6 +3,8 @@ My attempt to solve [http://cryptopals.com/](the matsano crypto challenges).
 # Things I have learnt about whilst doing this
 
 * Ruby.
+  * [https://www.practicingruby.com/articles/uses-for-modules-1](Modules) as an
+  alternative to inheritance or object composition.
 * Delving into the basics of crypto.
 * Using TDD to drive the design of my program.
   * So far the main benefit I have got from TDD is to ensure correctness and produce an
@@ -20,5 +22,8 @@ My attempt to solve [http://cryptopals.com/](the matsano crypto challenges).
   * Immutability and OO leads me towards either classes with just static methods,
   which seems more functional than OO, or towards classes where the data is
   passed in via the constructor.
-  * Learnt about [http://www.sitepoint.com/dci-the-evolution-of-the-object-oriented-paradigm/](data context interaction)
-  and how it makes object collaboration a priority.
+  * Learning about [http://www.sitepoint.com/dci-the-evolution-of-the-object-oriented-paradigm/](data context interaction)
+  and how it makes object collaboration a priority. I like how it makes the system
+  use cases explicit (similar to BDD style testing), but not sure if this code is
+  complicated enough to warrant this yet.
+    * I think I need to read more about the Actor model
