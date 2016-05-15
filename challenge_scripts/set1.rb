@@ -2,6 +2,7 @@ require_relative '../src/single_byte_xor_cypher_decoder'
 require_relative '../src/byte_converter'
 require_relative '../src/byte_converter'
 require_relative '../src/repeating_key_xor_decoder'
+require 'OpenSSL'
 
 # Challenges 1 and 2 are covered in bytes_tests.rb
 
@@ -32,4 +33,16 @@ File.open(File.join(File.dirname(__FILE__), '../data/set1challenge6.txt')) do |f
   decoder = RepeatingKeyXorDecoder.new(hex_string)
   puts "Challenge 6 results"
   puts "clear_text #{decoder.plain_text}"
+end
+
+# Challenge 7
+File.open(File.join(File.dirname(__FILE__), '../data/set1challenge7.txt')) do |f|
+  base64_string = f.read
+  bytes = ByteConverter.convert_from_base64(base64_string).map { |x| x.chr }.join
+  cipher = OpenSSL::Cipher.new 'AES-128-ECB'
+  cipher.decrypt
+  cipher.key = 'YELLOW SUBMARINE'
+
+  puts "Challenge 7 results"
+  puts "clear_text #{cipher.update(bytes) + cipher.final}"
 end
