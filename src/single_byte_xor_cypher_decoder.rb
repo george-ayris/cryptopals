@@ -3,8 +3,20 @@ require_relative 'byte_converter.rb'
 require_relative 'xor.rb'
 
 class SingleByteXorCypherDecoder
-  def initialize hex_cypher_text
-    @key, @most_english_calculator = decode ByteConverter.convert_to_bytes(hex_cypher_text)
+  class << self
+    def with_bytes cypher_bytes
+      new cypher_bytes
+    end
+
+    def with_hex hex_cypher_text
+      new ByteConverter.convert_to_bytes(hex_cypher_text)
+    end
+
+    private :new
+  end
+
+  def initialize cypher_bytes
+    @key, @most_english_calculator = decode cypher_bytes
   end
 
   attr_reader :key

@@ -1,6 +1,12 @@
 class HammingDistanceCalculator
-  def initialize(string1, string2)
-    @distance = hamming_distance string1.bytes, string2.bytes
+  class << self
+    def with_strings string1, string2
+      new string1.bytes, string2.bytes
+    end
+  end
+
+  def initialize bytes1, bytes2
+    @distance = hamming_distance bytes1, bytes2
   end
 
   attr_reader :distance
@@ -12,7 +18,7 @@ class HammingDistanceCalculator
     end
 
     bytes1.zip(bytes2).reduce(0) do |hamming_distance, current_pair|
-      x, y  = current_pair
+      x, y = current_pair
       number_of_identical_bits = (x^y).to_s(2).count('1')
       hamming_distance + number_of_identical_bits
     end

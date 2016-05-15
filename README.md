@@ -26,4 +26,4 @@ My attempt to solve [http://cryptopals.com/](the matsano crypto challenges).
   and how it makes object collaboration a priority. I like how it makes the system
   use cases explicit (similar to BDD style testing), but not sure if this code is
   complicated enough to warrant this yet.
-    * I think I need to read more about the Actor model
+    * Seems to be a somewhat similar to domain services in DDD

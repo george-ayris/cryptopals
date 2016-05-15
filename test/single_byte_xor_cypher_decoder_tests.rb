@@ -16,13 +16,13 @@ class SingleByteXorCypherDecoderTests < MiniTest::Test
   end
 
   def test_single_byte_xor_cypher_decoder
-    decoder = SingleByteXorCypherDecoder.new("523b7a763b486b7a696f7a786e68")
-    assert_equal "I am Spartacus", decoder.clear_text()
-    assert_equal 27, decoder.key()
+    decoder = SingleByteXorCypherDecoder.with_hex("523b7a763b486b7a696f7a786e68")
+    assert_equal "I am Spartacus", decoder.clear_text
+    assert_equal 27, decoder.key
   end
 
   def test_prefer_strings_with_valid_punctuation
-    decoder = SingleByteXorCypherDecoder.new("7b5a4215415d544115415d5015455447414c155c46155f4058455c5b523f")
-    assert_equal "Now that the party is jumping\n", decoder.clear_text()
+    decoder = SingleByteXorCypherDecoder.with_hex("7b5a4215415d544115415d5015455447414c155c46155f4058455c5b523f")
+    assert_equal "Now that the party is jumping\n", decoder.clear_text
   end
 end

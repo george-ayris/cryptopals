@@ -8,6 +8,10 @@ module ByteConverter
     Base64.strict_encode64(byte_array.map { |x| x.chr }.join)
   end
 
+  def convert_from_base64 base64_representation
+    Base64.decode64(base64_representation).bytes
+  end
+
   def convert_to_bytes hex_representation
     hex_representation.scan(/../).map { |x| x.hex }
   end
