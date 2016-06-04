@@ -46,3 +46,16 @@ File.open(File.join(File.dirname(__FILE__), '../data/set1challenge7.txt')) do |f
   puts "Challenge 7 results"
   puts "clear_text #{cipher.update(bytes) + cipher.final}"
 end
+
+# Challenge 8
+score = 0
+File.readlines(File.join(File.dirname(__FILE__), '../data/set1challenge8.txt')).each do |line|
+  decoder = SingleByteXorCypherDecoder.with_hex(line)
+  if decoder.score > score
+    score = decoder.score
+    clear_text = decoder.clear_text
+  end
+end
+
+puts "Challenge 8 results"
+puts "clear_text #{clear_text}"
